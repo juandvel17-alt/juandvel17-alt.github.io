@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <title>elasquez Irrigation LLC</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .logo h2 {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #111112;
+      font-weight: bold;
+    }
+
+    /* 🔥 Hero Section */
+    .hero {
+      background-image: url('assets/images/backg1.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .quote-button {
+      padding: 15px 30px;
+      background-color: #003399;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .quote-button:hover {
+      background-color: #001f66;
+    }
+
+    /* 🔥 Services */
+    .services-process {
+      padding: 60px 40px;
+      background-color: #f9f9f9;
+    }
+
+    .services-process h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* 🔥 NEW Process Description Block */
+    .process-description {
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+      padding: 20px 30px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      text-align: center;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .process-step {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .process-step img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .process-step h3 {
+      margin: 15px 0 10px;
+      font-size: 22px;
+    }
+
+    .process-step p {
+      font-size: 14px;
+    }
+
+    .process-step button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #003399;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* 🔥 About Us */
+    .about-us {
+      background-image: url('assets/images/result_0.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    .about-us h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .about-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 20px;
+      padding: 60px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-overlay img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-overlay p {
+      color: #ffffff;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    .about-text {
+      max-width: 400px;
+      text-align: justify;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    /* 🔥 We Operate + Trusted Section */
+    .operate-trusted {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin: 60px 0;
+    }
+
+    .operate-trusted iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .operate-trusted-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .operate-list {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px 40px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      color: #fff;
+      pointer-events: auto;
+    }
+
+    .operate-list ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    .operate-list ul li {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .trusted-logos-block {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px 40px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+      pointer-events: auto;
+    }
+
+    .trusted-logos-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .trusted-logos-block img {
+      width: 100px;
+      height: auto;
+    }
+
+    /* 🔥 Contact 3D Wheel with arrows */
+    .contact-section {
+      padding: 60px 40px;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .wheel-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1500px;
+      position: relative;
+    }
+
+    .wheel {
+      width: 600px;
+      height: 350px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      cursor: grab;
+    }
+
+    .wheel-card {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      text-align: center;
+      backface-visibility: hidden;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .wheel-card h2 {
+      color: #003399;
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+
+    .contact-item {
+      font-size: 1.1rem;
+      margin: 15px 0;
+    }
+
+    .contact-item a {
+      color: #003399;
+      text-decoration: none;
+    }
+
+    .wheel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .wheel-arrow.left {
+      left: -70px;
+    }
+
+    .wheel-arrow.right {
+      right: -70px;
+    }
+
+    footer {
+      background-color: #003399;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/images/logo-for-tio.jpg" alt="Velasquez Irrigation LLC Logo">
+      <div>
+        <h2>Velasquez Irrigation LLC</h2>
+        <p style="font-size: 0.9rem; color: #003399;">Irrigation, Outdoor Lighting and Drain Pipe</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#Request A Quote">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="Request A Quote">
+    <div class="hero-content">
+      <h1>IRRIGATION & LIGHTING</h1>
+      <p>DRAIN PIPE SERVICES</p>
+      <a href="mailto:Velasquezirrigation@gmail.com" style="text-decoration: none;">
+        <button class="quote-button">REQUEST A QUOTE</button>
+      </a>
+    </div>
+  </section>
+
+  <section class="services-process" id="services">
+    <h2 style="text-align: center; margin-top: 40px; font-size: 2rem; color: #003399;">Our Service Process</h2>
+
+    <!-- 🔥 New Description Card -->
+    <div class="process-description">
+      <p>
+        Our service process is designed with you in mind. From the initial consultation to the final walkthrough, we
+        make sure
+        every step is clear, efficient, and tailored to your needs. Whether it’s irrigation, lighting, or drainage
+        solutions,
+        we work with precision and care to deliver results that last. This is just a placeholder paragraph — you can
+        edit and
+        update it with your own words later.
+      </p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <img class="h-[300px] object-cover w-auto" src="assets/images/irr1.jpg" alt="Irrigation">
+        <h3>Irrigation</h3>
+        <p>Click to explore how we design, install, and maintain custom irrigation systems for residential and
+          commercial landscapes</p>
+        <button onclick="location.href='gallery.html'">See our work</button>
+      </div>
+      <div class="process-step">
+        <img class="h-[300px] object-cover w-auto" src="assets/images/lighting1.jpg" alt="Outdoor Lighting">
+        <h3>Outdoor Lighting</h3>
+        <p>Interactive overview of how our lighting enhances security, beauty, and functionality in your outdoor spaces.
+        </p>
+        <button onclick="location.href='gallery.html'">See our work</button>
+      </div>
+      <div class="process-step">
+        <img class="h-[300px] object-cover w-auto" src="assets/images/drain4.jpg" alt="Drain Pipe">
+        <h3>Drain Pipe</h3>
+        <p>Discover how we inspect, install, and maintain efficient drain pipe systems to prevent water damage.</p>
+        <button onclick="location.href='gallery.html'">See our work</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about-us" id="about">
+    <h2>About Us</h2>
+    <div class="about-overlay">
+      <div class="flex flex-col items-center justify-center">
+        <img src="assets/images/tio.png" alt="Guillermo Velasquez - Man in charge of the business">
+        <p>Guillermo Velasquez – Owner & Operator</p>
+      </div>
+      <div class="about-text">
+        <p>
+          Velasquez Irrigation LLC is a family-owned and operated business with years of experience in irrigation
+          systems, outdoor lighting, and drainage solutions. We pride ourselves on quality work, reliability, and
+          customer satisfaction.
+        </p>
+        <p style="margin-top: 15px;">
+          Whether it’s a new installation or maintenance, we bring your outdoor spaces to life with efficiency and
+          precision. Our team is committed to delivering high-performance systems tailored to each client’s landscape
+          and vision.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- We Operate + Trusted Section -->
+  <section class="operate-trusted">
+    <iframe id="mapIframe"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48325.63636245377!2d-84.5828952!3d39.1393391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8841b3e032b6bc17%3A0xd10f1d0a3bb1f017!2sCincinnati%2C%20OH!5e0!3m2!1sen!2sus!4v1695476739000!5m2!1sen!2sus"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <div class="operate-trusted-content">
+      <div class="operate-list">
+        <h3 style="font-size: 2rem; margin-bottom: 15px;">We Operate In</h3>
+        <ul>
+          <li>All of Ohio</li>
+          <li>Northern Kentucky</li>
+          <li>Eastern Indiana</li>
+        </ul>
+      </div>
+
+      <div class="trusted-logos-block" id="trustedLogos">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Kings_Island_Logo.svg/640px-Kings_Island_Logo.svg.png"
+          alt="Kings Island Logo">
+        <img
+          src="https://th.bing.com/th/id/R.60db182261991eb9c17c090f02dc71cd?rik=LJOozgqZLb0hyw&riu=http%3a%2f%2fassets.stickpng.com%2fthumbs%2f612a31517c7c75000443b271.png&ehk=p4BwmPx0il%2b%2bHbkr2vsWGSYVUmL9StsMHRR8qiurnyQ%3d&risl=&pid=ImgRaw&r=0"
+          alt="Chick-fil-A Logo">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/029/703/986/non_2x/hilton-logo-editorial-transparent-free-png.png"
+          alt="Hilton Logo">
+        <img src="https://brandlogovector.com/wp-content/uploads/2022/05/Wawa-Logo-Small.png" alt="Wawa Logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="wheel-container">
+      <button class="wheel-arrow left" id="prev">&#10094;</button>
+      <div class="wheel" id="contactWheel">
+        <div class="wheel-card">
+          <h2>Contact Us</h2>
+          <div class="contact-item">📞 Phone: <a href="tel:5132571440">(513) 257-1440</a></div>
+          <div class="contact-item">📧 Email: <a
+              href="mailto:Velasquezirrigation@gmail.com">Velasquezirrigation@gmail.com</a></div>
+          <div class="contact-item">📍 Location: Cincinnati, OH</div>
+          <div class="contact-item">🕒 Hours: <span style="color: #003399;">8 AM – 6 PM EST</span></div>
+        </div>
+
+        <div class="wheel-card">
+          <h2>Follow Us</h2>
+          <div class="contact-item">📸 Instagram: <a href="#">@VelasquezIrrigation</a></div>
+          <div class="contact-item">👍 Facebook: <a href="#">Velasquez Irrigation LLC</a></div>
+          <div class="contact-item">🎵 TikTok: <a href="#">@VelasquezIrrigation</a></div>
+        </div>
+
+        <div class="wheel-card">
+          <h2>Request</h2>
+          <div class="contact-item">📝 Form: <a href="#">Request a Quote</a></div>
+          <div class="contact-item">📧 Email: <a
+              href="mailto:Velasquezirrigation@gmail.com">Velasquezirrigation@gmail.com</a></div>
+        </div>
+      </div>
+      <button class="wheel-arrow right" id="next">&#10095;</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Velasquez Irrigation LLC. All rights reserved.
+  </footer>
+
+  <script>
+    const aboutSection = document.querySelector('.about-us');
+    const mapIframe = document.getElementById('mapIframe');
+    const trustedBlock = document.getElementById('trustedLogos');
+
+    window.addEventListener('scroll', () => {
+      const offset = window.pageYOffset;
+      aboutSection.style.backgroundPositionY = offset * 0.5 + 'px';
+
+      const operateSection = document.querySelector('.operate-trusted');
+      const sectionTop = operateSection.offsetTop;
+      const scroll = window.pageYOffset - sectionTop;
+      if (scroll > 0) {
+        mapIframe.style.transform = `translateY(${scroll * 0.2}px)`;
+      }
+
+      const rect = trustedBlock.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        trustedBlock.classList.add('visible');
+      }
+    });
+
+    // 3D Wheel Arrows + Drag
+    const wheel = document.getElementById('contactWheel');
+    const cards = wheel.children;
+    const cardCount = cards.length;
+    const rotateStep = 360 / cardCount;
+    let currentRotation = 0;
+
+    Array.from(cards).forEach((card, i) => {
+      card.style.transform = `rotateY(${i * rotateStep}deg) translateZ(300px)`;
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+      currentRotation -= rotateStep;
+      wheel.style.transform = `rotateY(${currentRotation}deg)`;
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+      currentRotation += rotateStep;
+      wheel.style.transform = `rotateY(${currentRotation}deg)`;
+    });
+
+    // Drag functionality
+    let isDragging = false;
+    let startX;
+
+    wheel.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      wheel.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      wheel.style.cursor = 'grab';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      currentRotation += deltaX * 0.5; // sensitivity
+      wheel.style.transform = `rotateY(${currentRotation}deg)`;
+      startX = e.clientX;
+    });
+  </script>
+</body>
+
+</html>
