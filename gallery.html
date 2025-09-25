@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velasquez Irrigation - Vertical Scrolling Gallery</title>
+  <meta name="description"
+    content="Velasquez Irrigation: Professional landscape lighting and irrigation services in Cincinnati, OH.">
+  <meta property="og:title" content="Velasquez Irrigation">
+  <meta property="og:description" content="Professional landscape lighting and irrigation services in Cincinnati, OH.">
+  <meta property="og:image" content="assets/images/logo.jpg">
+  <meta property="og:url" content="https://velasquezirrigation.llc">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f8f8f8;
+      font-family: Arial, sans-serif;
+      color: black;
+      overflow-y: auto;
+    }
+
+    main {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+    }
+
+    section:first-of-type {
+      border-left: none;
+    }
+
+    section:last-of-type {
+      border-right: none;
+    }
+
+    h2 {
+      color: white;
+      font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      padding: 12px 0;
+      z-index: 2;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .section-buttons {
+      position: absolute;
+      top: 60px;
+      width: 90%;
+      display: flex;
+      z-index: 2;
+    }
+
+    .section-buttons a {
+      padding: 10px 18px;
+      background: rgba(0, 0, 0, 0.5);
+      /* Updated color */
+      backdrop-filter: blur(90px);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .section-buttons a:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    #services-btn {
+      margin-left: auto;
+    }
+
+    .gallery__strip {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      position: absolute;
+      top: 120px;
+      animation: scroll-vertical 30s linear infinite;
+      z-index: 1;
+    }
+
+    section:nth-of-type(1) .gallery__strip {
+      animation-duration: 35s;
+    }
+
+    section:nth-of-type(2) .gallery__strip {
+      animation-duration: 38s;
+    }
+
+    section:nth-of-type(3) .gallery__strip {
+      animation-duration: 32s;
+    }
+
+    .photo {
+      width: 90%;
+      max-width: 500px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 0 auto;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .photo:hover img {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    @keyframes scroll-vertical {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    .bottom-overlay {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      color: #fff;
+      z-index: 1050;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      transition: bottom 0.5s ease;
+    }
+
+    .bottom-overlay.active {
+      bottom: 0;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-buttons a {
+      padding: 12px 22px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta-buttons a:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .testimonial {
+      font-style: italic;
+      text-align: center;
+    }
+
+    #info-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 12px 18px;
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(90px);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      z-index: 1100;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    #info-btn:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    #gallery-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 15px;
+      padding: 30px;
+      overflow-y: auto;
+      z-index: 1200;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    #gallery-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #gallery-popup img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    #gallery-popup img:hover {
+      transform: scale(1.05);
+    }
+
+    #back-btn {
+      position: fixed;
+      top: 7px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #000;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      z-index: 1300;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #back-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="info-btn">Info</div>
+
+  <main id="top">
+    <section>
+      <h2>Lighting</h2>
+      <div class="section-buttons">
+        <a href="index.html">Home</a>
+      </div>
+      <div class="gallery__strip">
+        <div class="photo"><img src="assets/images/lighting1.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/lighting2.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/lighting3.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/lighting4.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/lighting5.jpg" alt=""></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Irrigation</h2>
+      <div class="gallery__strip">
+        <div class="photo"><img src="assets/images/irr1.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/irr2.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/irr3.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/irr4.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/irr5.jpg" alt=""></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Drain Pipe</h2>
+      <div class="section-buttons">
+        <a href="#" id="services-btn">See Our Services</a>
+      </div>
+      <div class="gallery__strip">
+        <div class="photo"><img src="assets/images/drain1.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/drain2.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/drain3.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/drain4.jpg" alt=""></div>
+        <div class="photo"><img src="assets/images/drain5.jpg" alt=""></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-overlay" id="bottom-overlay">
+    <div class="cta-buttons">
+      <a href="mailto:Velasquezirrigation@gmail.com">Request a Quote</a>
+    </div>
+    <div class="social-links">
+      <!-- Instagram, Facebook, TikTok icons omitted for brevity -->
+    </div>
+    <div class="testimonial">
+      "Velasquez Irrigation transformed our backyard! – John D."
+    </div>
+    <p>📞 (513) 257-1440</p>
+    <p>📧 Velasquezirrigation@gmail.com</p>
+    <p>📍 Cincinnati, OH</p>
+    <p>🕒 Hours: 8 AM – 6 PM EST</p>
+  </div>
+
+  <div class="modal" id="modal">
+    <img src="" alt="">
+  </div>
+
+  <div id="gallery-popup">
+    <div id="back-btn">Back</div>
+    <img src="assets/images/lighting1.jpg" alt="">
+    <img src="assets/images/lighting2.jpg" alt="">
+    <img src="assets/images/lighting3.jpg" alt="">
+    <img src="assets/images/lighting4.jpg" alt="">
+    <img src="assets/images/lighting5.jpg" alt="">
+    <img src="assets/images/irr1.jpg" alt="">
+    <img src="assets/images/irr2.jpg" alt="">
+    <img src="assets/images/irr3.jpg" alt="">
+    <img src="assets/images/irr4.jpg" alt="">
+    <img src="assets/images/irr5.jpg" alt="">
+    <img src="assets/images/drain1.jpg" alt="">
+    <img src="assets/images/drain2.jpg" alt="">
+    <img src="assets/images/drain3.jpg" alt="">
+    <img src="assets/images/drain4.jpg" alt="">
+    <img src="assets/images/drain5.jpg" alt="">
+  </div>
+
+  <script>
+    const photos = document.querySelectorAll('.photo img');
+    const modal = document.getElementById('modal');
+    const modalImg = modal.querySelector('img');
+    const strips = document.querySelectorAll('.gallery__strip');
+
+    photos.forEach(photo => {
+      photo.addEventListener('click', () => {
+        modalImg.src = photo.src;
+        modal.classList.add('active');
+        strips.forEach(s => s.style.animationPlayState = 'paused');
+      });
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        strips.forEach(s => s.style.animationPlayState = 'running');
+      }
+    });
+
+    const infoBtn = document.getElementById('info-btn');
+    const bottomOverlay = document.getElementById('bottom-overlay');
+    infoBtn.addEventListener('click', () => {
+      bottomOverlay.classList.toggle('active');
+    });
+
+    const servicesBtn = document.getElementById('services-btn');
+    const galleryPopup = document.getElementById('gallery-popup');
+    const galleryImages = galleryPopup.querySelectorAll('img');
+    const backBtn = document.getElementById('back-btn');
+
+    servicesBtn.addEventListener('click', e => {
+      e.preventDefault();
+      galleryPopup.classList.add('active');
+    });
+
+    backBtn.addEventListener('click', e => {
+      e.preventDefault();
+      galleryPopup.classList.remove('active');
+    });
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modal.classList.add('active');
+        strips.forEach(s => s.style.animationPlayState = 'paused');
+      });
+    });
+
+    galleryPopup.addEventListener('click', e => {
+      if (e.target === galleryPopup) {
+        galleryPopup.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
